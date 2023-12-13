@@ -14,12 +14,6 @@
 - jdk 1.8
 - mysql 8.0.22
 
-#### 源码地址
-| 前端网址  |  后端网址 |
-|---|---|
-| https://gitee.com/tatata1124/online-examination-system-FE.git  | https://gitee.com/tatata1124/online-examination-system-server.git  |
-
-
 #### 截图显示
 登录页面
 ![登录页面](https://images.gitee.com/uploads/images/2021/0321/173124_7908d324_7451960.png "snipaste20210321_172951.png")
