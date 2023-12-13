@@ -12,7 +12,6 @@ import cn.com.testol.interceptor.AccessInterceptor;
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
 
-
     // todo 拦截器做不好。就不再开了
 
     /* 拦截器配置 */
