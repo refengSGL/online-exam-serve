@@ -1,0 +1,43 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/online_exam?serverTimezone=Asia/Shanghai&useSSL=false&userUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        strategy: org.hibernate.cfg.DefaultNamingStrategy
+
+mybatis:
+  type-aliases-package: cn.com.testol.entity
+  mapper-locations: classpath:generator/*.xml
+
+logging:
+  level:
+    cn.com.testol.dao: debug
+
+server:
+  port: 8081
+
+file:
+  uploadpath: D:/项目/demo/前端/Online-exam/online-examination-system-server-master/src/main/resources/static/images
+
+  # 这两个是重点
+  ## 第一个就是做ulr模式匹配，/**的作用是使上传的目录 比如E://img/ 设置成/**
+  # 那么url请求的时候就可以直接写localhost://+文件名访问
+  mvc:
+    static-path-pattern: ${file.uploadpath}
+  resources:
+    static-locations: ${file.uploadpath}
+
+
+  # 默认可不写
+  servlet:
+    multipart:
+      enabled: true
+      location:
+      file-size-threshold: 0
+      max-file-size: 10MB
