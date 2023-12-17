@@ -19,8 +19,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.util.*;
 
+// 注意 ip 地址要跟着 vscode上走
+
 @Slf4j
-@CrossOrigin(origins = "http://10.12.144.101:8080")
+@CrossOrigin(origins = "http://10.12.144.125:8080")
 @RestController
 public class UserController {
     @Autowired
@@ -122,13 +124,15 @@ public class UserController {
         return userService.changeRole(u_id);
     }
 
-    @DeleteMapping(value = "/deleteUser")
-    public String deleteUser(int id){
-        int result=userService.deleteUser(id);
-        if(result==1){
-            return "注销成功";
-        }else {
-            return "注销失败";
-        }
-    }
+    // 只是备用
+//    @DeleteMapping(value = "/deleteUser")
+//    public String deleteUser(int id){
+//        int result=userService.deleteUser(id);
+//        if(result==1){
+//            return "注销成功";
+//        }else {
+//            return "注销失败";
+//        }
+//    }
+
 }

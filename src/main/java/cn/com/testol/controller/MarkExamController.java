@@ -14,13 +14,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://10.12.144.101:8080")
+@CrossOrigin(origins = "http://10.12.144.125:8080")
 public class MarkExamController {
     @Autowired
     private MarkExamService markExamService;
 
 
-    @ApiOperation(value = "获取班级考试下")
+    @ApiOperation(value = "获取班级考试")
     @GetMapping("/getUserGradeList")
     public Msg getUserGradeList(HttpServletRequest request,@RequestParam Integer classesId,@RequestParam Integer examId,
                                 @RequestParam int pageSize,@RequestParam int currentPage){
@@ -46,7 +46,6 @@ public class MarkExamController {
             return ResultUtil.error(400,"用户身份不正确");
         }
         int teacher_id=Integer.parseInt(JwtUtil.getUserId(token));
-
 
         return markExamService.selestStuExamInfo(classesId,examId,userId);
     }

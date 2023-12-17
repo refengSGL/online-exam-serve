@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 @RestController
-@CrossOrigin(origins = "http://10.12.144.101:8080")
+@CrossOrigin(origins = "http://10.12.144.125:8080")
 public class ReleaseExamController {
     @Autowired
     private ReleaseExamService releaseExamService;

@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Objects;
 
 @RestController
-@CrossOrigin(origins = "http://10.12.144.101:8080")
+@CrossOrigin(origins = "http://10.12.144.125:8080")
 public class ExamController {
     @Autowired
     private ExamService examService;

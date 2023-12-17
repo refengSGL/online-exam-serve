@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 @Slf4j
-@CrossOrigin(origins = "http://10.12.144.101:8080")
+@CrossOrigin(origins = "http://10.12.144.125:8080")
 @RestController
 public class UploadController {
 
