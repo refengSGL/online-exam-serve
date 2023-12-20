@@ -21,6 +21,7 @@ public class ReleaseExamDTO {
     private Integer classesId;
 
     /**
+     *
      * 考试名称
      */
     @ApiModelProperty(value="考试名称")
@@ -36,7 +37,7 @@ public class ReleaseExamDTO {
      * 发布时间
      */
     @ApiModelProperty(value="发布时间")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd ")
     private Date releaseTime;
 
     /**

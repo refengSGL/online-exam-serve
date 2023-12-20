@@ -36,7 +36,7 @@ public class User implements Serializable {
     /**
      * 电子邮箱
      */
-    private String email;
+    private String number;
 
     /**
      * 身份 student:学生  teacher:是教师身份
@@ -59,16 +59,4 @@ public class User implements Serializable {
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createDate;
-
-    /**
-     * 头像图片
-     */
-    private String photo;
-
-    /**
-     * 头像图片名称
-     */
-    private String photoName;
-
-    private static final long serialVersionUID = 1L;
 }

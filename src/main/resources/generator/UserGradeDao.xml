@@ -38,19 +38,11 @@
       where uc.classes_id = #{classesId,jdbcType=INTEGER}
   </select>
     <select id="selectByUserId" resultMap="BaseResultMap">
-      SELECT ug.grade, ug.grade_auto, ug.answer_date
+      SELECT ug.grade, ug.grade_auto, ug.answer_date,ug.classes_id,u.user_name,ug.exam_id
       FROM user_grade ug
              JOIN user u ON ug.user_id = u.user_id
-      WHERE ug.classes_id = #{classId}
-        AND u.user_name = #{studentName}
+      WHERE ug.user_id = #{userId}
     </select>
-<!--  <select id="selectTestInfoByClassesId" resultMap="BaseResultMap">-->
-<!--    SELECT ug.grade, ug.grade_auto, ug.answer_date-->
-<!--    FROM user_grade ug-->
-<!--           JOIN user u ON ug.user_id = u.user_id-->
-<!--    WHERE ug.classes_id = #{classId}-->
-<!--      AND u.user_name = #{studentName}-->
-<!--  </select>-->
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user_grade
     where id = #{id,jdbcType=INTEGER}

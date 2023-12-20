@@ -30,5 +30,4 @@ public interface ExamClassesDao {
 
     ReleaseExamDTO selectRecord(Integer classesId, Integer examId);
 
-
 }

@@ -30,7 +30,7 @@ public class UserClassesDTO {
     /**
      * 电子邮箱
      */
-    private String email;
+    private String number;
 
     /**
      * 身份 student:学生  teacher:是教师身份

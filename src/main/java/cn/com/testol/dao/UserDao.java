@@ -22,13 +22,13 @@ public interface UserDao {
 
     int updateByPrimaryKey(User record);
 
-    User selectByEmail(String email);
+    User selectByEmail(String number);
 
     User selectByPhone(String phone);
 
     List<UserClassesDTO> selectByC_id(Integer classesId);
 
-    User loginByEmail(Integer userId, String email, String password);
+    User loginByEmail(Integer userId, String number, String password);
 
     User loginByPhone(Integer userId, String phone, String password);
 }

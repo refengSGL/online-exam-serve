@@ -22,7 +22,7 @@ import java.util.*;
 // 注意 ip 地址要跟着 vscode上走
 
 @Slf4j
-@CrossOrigin(origins = "http://10.12.144.125:8080")
+@CrossOrigin(origins = "http://10.10.10.147:8080")
 @RestController
 public class UserController {
     @Autowired
@@ -52,7 +52,6 @@ public class UserController {
         System.out.println(loginDTO.getName()+loginDTO.getPassword());
         User user = userService.login(loginDTO.getName(),loginDTO.getPassword());
 
-
         if (user!=null){
             String token= JwtUtil.sign(user.getUserName(),user.getUserId()+"",user.getRole());
 
@@ -66,7 +65,6 @@ public class UserController {
         }
         return ResultUtil.error(10001,"用户名或密码错误");
 
-
     }
 
     @ApiOperation(value = "注册")
@@ -75,10 +73,10 @@ public class UserController {
         User user=new User();
         BeanUtils.copyProperties(registerDTO,user);
 
+        log.info("registerDTO:{}*************************************",registerDTO);
+
         return userService.addUser(user,registerDTO.getPassword());
     }
-
-
 
     @ApiOperation(value = "获取班级下的用户列表")
     @GetMapping("/queryUserByC_id")
@@ -113,26 +111,5 @@ public class UserController {
         int u_id=Integer.parseInt(JwtUtil.getUserId(token));
         return userService.getRole(u_id);
     }
-
-    @ApiOperation(value = "切换用户角色")
-    @PutMapping(value = "changeRole")
-    public Msg changeRole(HttpServletRequest request){
-        String token =  request.getHeader("token");
-        //获取token中的id
-        int u_id=Integer.parseInt(JwtUtil.getUserId(token));
-
-        return userService.changeRole(u_id);
-    }
-
-    // 只是备用
-//    @DeleteMapping(value = "/deleteUser")
-//    public String deleteUser(int id){
-//        int result=userService.deleteUser(id);
-//        if(result==1){
-//            return "注销成功";
-//        }else {
-//            return "注销失败";
-//        }
-//    }
 
 }

@@ -71,7 +71,7 @@
     </select>
     <select id="fuzzyQuery" resultMap="BaseResultMap">
         select c.*, u.user_name as creator_name
-        from classes
+        from classes c
         join user u on u.user_id = c.creator_id
         where classes_id like concat('%',#{keyword},'%') or classes_name like concat('%',#{keyword},'%')
     </select>

@@ -7,6 +7,7 @@ import cn.com.testol.service.ExamService;
 import cn.com.testol.utils.Msg;
 import cn.com.testol.utils.Page;
 import cn.com.testol.utils.ResultUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Slf4j
 @Service
 @Transactional  //事务的注解
 public class ExamServiceImpl implements ExamService {
@@ -223,19 +225,43 @@ public class ExamServiceImpl implements ExamService {
         }
     }
 
+//    @Override
+//    public Msg selectFinishExamList(Integer userId, int pageSize, int currentPage) {
+//        List<UserGrade> userGradeDTOList = userGradeDao.selectByUserId(userId);
+//
+//        for(UserGrade ug:userGradeDTOList){
+//            ReleaseExamDTO examClasses = examClassesDao.selectRecord(ug.getClassesId(),ug.getExamId());
+//            if(examClasses != null &&examClasses.getPublishScore() != 1){
+//                ug.setGrade(null);
+//            }
+//        }
+//
+//        log.info("examClasses:{}",userGradeDTOList);
+//        Page<UserGrade> page = new Page<UserGrade>(pageSize,currentPage);
+//        page.build(userGradeDTOList);
+//        return ResultUtil.success(page);
+//    }
+
     @Override
     public Msg selectFinishExamList(Integer userId, int pageSize, int currentPage) {
+        List<ReleaseExamDTO> releaseExamDTOList = new ArrayList<>();
+
         List<UserGrade> userGradeDTOList = userGradeDao.selectByUserId(userId);
-        for(UserGrade ug:userGradeDTOList){
-            ReleaseExamDTO examClasses = examClassesDao.selectRecord(ug.getClassesId(),ug.getExamId());
-            if(examClasses != null &&examClasses.getPublishScore() != 1){
+
+        for (UserGrade ug : userGradeDTOList) {
+            ReleaseExamDTO examClasses = examClassesDao.selectRecord(ug.getClassesId(), ug.getExamId());
+            if (examClasses != null && examClasses.getPublishScore() != 1) {
                 ug.setGrade(null);
             }
+            releaseExamDTOList.add(examClasses);
         }
-        Page<UserGrade> page = new Page<UserGrade>(pageSize,currentPage);
-        page.build(userGradeDTOList);
+
+        log.info("releaseExamDTOList:{}", releaseExamDTOList);
+        Page<ReleaseExamDTO> page = new Page<>(pageSize, currentPage);
+        page.build(releaseExamDTOList);
         return ResultUtil.success(page);
     }
+
 
 
 }

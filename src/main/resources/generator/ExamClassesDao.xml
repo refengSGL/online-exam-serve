@@ -47,7 +47,7 @@
   </select>
     <select id="selectRecord" resultMap="releaseExamDTO">
       select
-      ec.* ,c.classes_name ,e.exam_id, e.exam_name, e.pass_mark
+      ec.* ,c.classes_name ,e.exam_id, e.exam_name, e.pass_mark,ec.release_time
       from exam_classes ec
       join classes c on c.classes_id = ec.classes_id
       join exam e on e.exam_id = ec.exam_id

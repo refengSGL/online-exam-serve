@@ -77,22 +77,12 @@ public class ReleaseExamServiceImpl implements ReleaseExamService {
         }
     }
 
-//    @Override
-//    public int updateRecord(int tp_id, int c_id,String release_time, String start_date, String deadline) {
-//        return releaseTestPaperMapper.updateRecord(tp_id, c_id,release_time, start_date, deadline);
-//    }
 
     @Override
     public int deleteRecord(Integer examId, Integer classesId) {
         return examClassesDao.deleteRecord(examId, classesId);
     }
 
-    // 获取学生 考试信息
-//    public Msg getStudentTestInfo(Integer classId,String studentName){
-//        List<UserGrade> userGradeList = userGradeDao.selectTestInfoByClassesId(classId,studentName );
-//        log.info("userGradeList:{}",userGradeList);
-//        return ResultUtil.success(userGradeList);
-//    }
 
     @Override
     public Msg getReleaseInfo(Integer classesId, Integer examId) {

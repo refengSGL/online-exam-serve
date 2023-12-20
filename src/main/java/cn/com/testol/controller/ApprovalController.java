@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
 
 @RestController
-@CrossOrigin(origins = "http://10.12.144.125:8080")
+@CrossOrigin(origins = "http://10.10.10.147:8080")
 public class ApprovalController {
     @Autowired
     private ApprovalService approvalService;

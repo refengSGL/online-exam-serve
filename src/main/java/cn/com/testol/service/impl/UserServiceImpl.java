@@ -33,7 +33,6 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserPasswordDao userPasswordDao;
 
-
     @Override
     public User login(String name, String password) {
         User user=userDao.selectByEmail(name);
@@ -46,8 +45,8 @@ public class UserServiceImpl implements UserService{
         System.out.println(user);
 
         User isUser;
-        if (user.getEmail().equals(name)) {
-            isUser = userDao.loginByEmail(user.getUserId(), name, password); // 根据邮箱登录
+        if (user.getNumber().equals(name)) {
+            isUser = userDao.loginByEmail(user.getUserId(), name, password); // 根据学号登录
         } else {
             isUser = userDao.loginByPhone(user.getUserId(), name, password); // 根据手机号登录
         }
@@ -95,8 +94,8 @@ public class UserServiceImpl implements UserService{
     @Override
     public Msg addUser(User user, String password) {
         try{
-            if(userDao.selectByEmail(user.getEmail())!=null){
-                return ResultUtil.error(1001,"该邮箱地址已被使用");
+            if(userDao.selectByEmail(user.getNumber())!=null){
+                return ResultUtil.error(1001,"该学号已被使用");
             }
             if(userDao.selectByPhone(user.getPhone())!=null && !user.getPhone().equals("")){
                 return ResultUtil.error(1002,"该手机号码已被使用");
@@ -130,40 +129,9 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Msg changeRole(Integer userId) {
-        try{
-            User user = userDao.selectByPrimaryKey(userId);
-            if(user.getRole().equals("student")){
-                user.setRole("teacher");
-            }else {
-                user.setRole("student");
-            }
-            userDao.updateByPrimaryKeySelective(user);
-            String token= JwtUtil.sign(user.getUserName(),user.getUserId()+"",user.getRole());
-            if(token!=null){
-                HashMap<String,Object> hm = new HashMap<String,Object>();
-                hm.put("token",token);
-                hm.put("status",user.getRole());
-                hm.put("name",user.getUserName());
-                return ResultUtil.success(hm);
-            }
-            return ResultUtil.success();
-        }catch (Exception e){
-            System.out.println(e);
-            //强制手动事务回滚
-            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-            return ResultUtil.error(100,"请求失败",e.toString());
-        }
-    }
-
-    @Override
     public int updateUser(User user) {
         user.setUpdateDate(new Date());
         return userDao.updateByPrimaryKeySelective(user);
     }
 
-    @Override
-    public int deleteUser(int id) {
-        return userDao.deleteByPrimaryKey(id);
-    }
 }

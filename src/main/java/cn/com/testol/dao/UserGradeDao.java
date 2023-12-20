@@ -23,7 +23,7 @@ public interface UserGradeDao {
 
     List<UserGrade> selectByClassesId(Integer classesId, Integer examId);
 
-    List<UserGrade> selectTestInfoByClassesId(Integer classesId, String studentName);
+//    List<UserGrade> selectTestInfoByClassesId(Integer classesId, String studentName);
 
     List<UserGrade> selectByUserId(Integer userId);
 }
